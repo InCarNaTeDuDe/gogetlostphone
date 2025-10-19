@@ -89,7 +89,7 @@ app.post("/send", async (req, res) => {
   try {
     // Authenticate using service account
     const auth = new GoogleAuth({
-      keyFile: serviceAccount,
+  credentials: serviceAccount, // ✅ pass the object, not keyFile
       scopes: ["https://www.googleapis.com/auth/firebase.messaging"],
     });
 
