@@ -24,6 +24,7 @@ app.set("views", path.join(__dirname, "views"));
 const SERVICE_ACCOUNT_FILE = JSON.parse(
   Buffer.from(process.env.FIREBASE_SERVICE_ACCOUNT_JSON, "base64").toString("utf-8")
 );
+console.log("hi", typeof SERVICE_ACCOUNT_FILE)
 // Initialize Firebase Admin
 admin.initializeApp({
   credential: admin.credential.cert(SERVICE_ACCOUNT_FILE),
