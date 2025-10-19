@@ -65,10 +65,8 @@ app.set("views", path.join(__dirname, "views"));
 // Path to your downloaded service account JSON
 // const SERVICE_ACCOUNT_FILE = "./service-account.json";
 // Read service account JSON from environment variable
-const SERVICE_ACCOUNT_FILE = Buffer.from(
-  process.env.FIREBASE_SERVICE_ACCOUNT_JSON,
-  "base64"
-).toString("utf-8");
+const SERVICE_ACCOUNT_FILE = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
+
 // Initialize Firebase Admin
 admin.initializeApp({
   credential: admin.credential.cert(SERVICE_ACCOUNT_FILE),
