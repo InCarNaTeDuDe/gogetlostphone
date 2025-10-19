@@ -43,6 +43,7 @@
 // }
 
 // sendMessage();
+import admin from "firebase-admin";
 
 import express from "express";
 import { GoogleAuth } from "google-auth-library";
@@ -68,7 +69,10 @@ const SERVICE_ACCOUNT_FILE = Buffer.from(
   process.env.FIREBASE_SERVICE_ACCOUNT_JSON,
   "base64"
 ).toString("utf-8");
-
+// Initialize Firebase Admin
+admin.initializeApp({
+  credential: admin.credential.cert(SERVICE_ACCOUNT_FILE),
+});
 // Your Firebase project ID
 const PROJECT_ID = "lostphoneapp-d88b6";
 
