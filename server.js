@@ -65,7 +65,7 @@ app.set("views", path.join(__dirname, "views"));
 // const SERVICE_ACCOUNT_FILE = "./service-account.json";
 // Read service account JSON from environment variable
 const SERVICE_ACCOUNT_FILE = Buffer.from(
-  process.env.FIREBASE_SERVICE_ACCOUNT_BASE64,
+  process.env.FIREBASE_SERVICE_ACCOUNT_JSON,
   "base64"
 ).toString("utf-8");
 
