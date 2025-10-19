@@ -1,48 +1,4 @@
-// const { GoogleAuth } = require("google-auth-library");
-// const axios = require("axios");
-// const fs = require("fs");
 
-// Notification payload
-// const message = {
-//   message: {˘
-//     token: DEVICE_TOKEN,
-//     notification: {
-//       title: "Hello",
-//       body: "Test message from Node.js script",
-//     },
-//   },
-// };
-
-// async function sendMessage() {
-//   try {
-//     // Authenticate using service account
-//     const auth = new GoogleAuth({
-//       keyFile: SERVICE_ACCOUNT_FILE,
-//       scopes: ["https://www.googleapis.com/auth/firebase.messaging"],
-//     });
-
-//     const client = await auth.getClient();
-//     const accessToken = await client.getAccessToken();
-
-//     // Send the FCM message
-//     const url = `https://fcm.googleapis.com/v1/projects/${PROJECT_ID}/messages:send`;
-//     const res = await axios.post(url, message, {
-//       headers: {
-//         Authorization: `Bearer ${accessToken.token}`,
-//         "Content-Type": "application/json",
-//       },
-//     });
-
-//     console.log("Message sent successfully:", res.data);
-//   } catch (err) {
-//     console.error(
-//       "Error sending message:",
-//       err.response ? err.response.data : err
-//     );
-//   }
-// }
-
-// sendMessage();
 import admin from "firebase-admin";
 
 import express from "express";
@@ -65,8 +21,9 @@ app.set("views", path.join(__dirname, "views"));
 // Path to your downloaded service account JSON
 // const SERVICE_ACCOUNT_FILE = "./service-account.json";
 // Read service account JSON from environment variable
-const SERVICE_ACCOUNT_FILE = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
-
+const SERVICE_ACCOUNT_FILE = JSON.parse(
+  Buffer.from(process.env.FIREBASE_SERVICE_ACCOUNT_B64, "base64").toString("utf-8")
+);
 // Initialize Firebase Admin
 admin.initializeApp({
   credential: admin.credential.cert(SERVICE_ACCOUNT_FILE),
