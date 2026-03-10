@@ -95,7 +95,13 @@
         </button>
       </form>
 
-      <form action="/trigger-alarm" method="POST">
+      <form action="/view-token" method="GET">
+        <button type="submit" class="btn btn-secondary w-100 action-btn">
+          🔑 View Registered Token
+        </button>
+      </form>
+
+      <!-- <form action="/trigger-alarm" method="POST">
         <button type="submit" class="btn btn-warning w-100 action-btn">
           🔊 Play Loud Alarm
         </button>
@@ -111,7 +117,9 @@
         <button type="submit" class="btn btn-danger w-100 action-btn">
           🔒 Lock Device
         </button>
-      </form>
+      </form> -->
+
+
 
       <% if (response) { %>
 
@@ -132,10 +140,19 @@
 
         <% } %>
 
-          <div class="footer-note">
-            Commands will be delivered when the device is connected to the internet.
-          </div>
-          ```
+          <% if (token) { %>
+
+            <div class="alert alert-dark text-start mt-3">
+              <strong>📱 Registered Device Token</strong>
+              <pre style="font-size:11px;white-space:pre-wrap;"><%= token %></pre>
+            </div>
+
+            <% } %>
+
+              <div class="footer-note">
+                Commands will be delivered when the device is connected to the internet.
+              </div>
+              ```
 
     </div>
 
