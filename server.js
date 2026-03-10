@@ -200,8 +200,8 @@ admin.initializeApp({
 let latestDeviceToken = "";
 
 // Home page
-app.get("/", (req, res) => {
-  res.render("index", { response: null });
+ app.get("/", (req, res) => {
+  res.render("index", { response: null, token: null });
 });
 
 // Register token
@@ -245,6 +245,24 @@ app.post("/trigger-capture", async (req, res) => {
       response: { error },
     });
   }
+});
+
+app.get("/view-token", (req, res) => {
+
+  if (!latestDeviceToken) {
+    return res.render("index", {
+      response: {
+        error: "No device token registered yet"
+      },
+      token: null
+    });
+  }
+
+  res.render("index", {
+    response: null,
+    token: latestDeviceToken
+  });
+
 });
 
 app.listen(8080, () => {
