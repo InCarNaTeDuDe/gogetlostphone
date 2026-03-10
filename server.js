@@ -239,6 +239,7 @@ app.post("/trigger-capture", async (req, res) => {
         success: true,
         result,
       },
+      token: latestDeviceToken
     });
   } catch (error) {
     res.render("index", {
