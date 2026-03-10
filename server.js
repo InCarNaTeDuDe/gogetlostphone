@@ -175,7 +175,7 @@ import express from "express";
 import admin from "firebase-admin";
 import path from "path";
 import { fileURLToPath } from "url";
-import serviceAccount from "./service-account.json" assert { type: "json" };
+// import serviceAccount from "./service-account.json" assert { type: "json" };
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -193,9 +193,6 @@ const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 
 serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, "\n");
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-});
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
