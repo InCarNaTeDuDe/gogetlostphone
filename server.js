@@ -174,6 +174,11 @@
 import express from "express";
 import admin from "firebase-admin";
 import path from "path";
+import { fileURLToPath } from "url";
+import serviceAccount from "./service-account.json" assert { type: "json" };
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(express.json());
@@ -183,7 +188,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-const serviceAccount = require("./service-account.json");
+// const serviceAccount = require("./service-account.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
