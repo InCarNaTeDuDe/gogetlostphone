@@ -171,9 +171,9 @@
 // const PORT = process.env.PORT || 3000;
 // app.listen(PORT, () => console.log(`🚀 Running at http://localhost:${PORT}`));
 
-const express = require("express");
-const admin = require("firebase-admin");
-const path = require("path");
+import express from "express";
+import admin from "firebase-admin";
+import path from "path";
 
 const app = express();
 app.use(express.json());
@@ -206,7 +206,7 @@ app.post("/register-token", (req, res) => {
 
   console.log("Token saved:", latestDeviceToken);
 
-  res.send("Token stored :- ", token);
+  res.send("Token stored");
 });
 
 // Trigger capture
