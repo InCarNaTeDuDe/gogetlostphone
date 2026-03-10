@@ -189,7 +189,13 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 // const serviceAccount = require("./service-account.json");
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 
+serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, "\n");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
