@@ -206,7 +206,7 @@ app.post("/register-token", (req, res) => {
 
   console.log("Token saved:", latestDeviceToken);
 
-  res.send("Token stored");
+  res.send("Token stored :- ", token);
 });
 
 // Trigger capture
