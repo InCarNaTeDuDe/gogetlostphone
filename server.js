@@ -222,6 +222,7 @@ app.post("/trigger-capture", async (req, res) => {
   if (!latestDeviceToken) {
     return res.render("index", {
       response: { error: "No phone registered yet" },
+      token: null   
     });
   }
 
@@ -239,11 +240,12 @@ app.post("/trigger-capture", async (req, res) => {
         success: true,
         result,
       },
-      token: latestDeviceToken
+      token: latestDeviceToken 
     });
   } catch (error) {
     res.render("index", {
       response: { error },
+      token: latestDeviceToken || null
     });
   }
 });
